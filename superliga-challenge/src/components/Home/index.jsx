@@ -1,9 +1,14 @@
 import React from "react";
+import Header from "../Header";
 
 const Home = () => {
   return (
-    <div>
-      <h1>PRUEBA DE ARRANQUE</h1>
+    <div className="">   
+   <div>
+    <Header />
+   </div>
+   
+   
     </div>
   );
 };
