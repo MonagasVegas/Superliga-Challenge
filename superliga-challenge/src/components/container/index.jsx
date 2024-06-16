@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import add from "../../assets/img/add.png";
 import big from "../../assets/img/big.png";
-
+import Papa from "papaparse";
+import cancel from "../../assets/svg/cancel.svg";
 const Container = () => {
-  const handleUpload = () => {
-    console.log("AQUI POR FAVOR");
+  const [data, setData] = useState([]);
+  console.log("🐉 ~ Container ~ data:", data);
+  const [selectedFile, setSelectedFile] = useState(null);
+  console.log("🐉 ~ Container ~ selectedFile:", selectedFile);
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+
+    Papa.parse(file, {
+      header: true,
+      complete: (results) => {
+        setData(results.data);
+      },
+    });
+  };
+
+  const handleDelete = () => {
+    setSelectedFile(null);
+    setData([]);
+  };
+
+  const handleSend = () => {
+    console.log("Esto es enviar. ");
   };
 
   return (
@@ -17,16 +40,39 @@ const Container = () => {
           </h1>
         </div>
 
-        <div className="flex flex-row gap-5 py-7">
-          <div onClick={handleUpload} className="flex gap-3 cursor-pointer">
+        {/* Sube tus archivos */}
+        {data == "" && (
+          <div className="flex flex-row gap-3 py-7 px-5 cursor-pointer">
             <img src={add} width={50} className="py-3" />
-            <h2 className="text-lg font-semibold border border-white self-center">
+            <label className="text-2xl font-normal border border-white self-center">
               Sube tus archivos
-            </h2>
+              <input
+                type="file"
+                accept=".csv"
+                onChange={handleFileUpload}
+                className="absolute inset-0 opacity-0 w-0 h-0 "
+              />
+            </label>
           </div>
-        </div>
+        )}
+
+        {selectedFile && (
+          <div className=" py-7 px-5 flex justify-around">
+            <p className="text-lg font-semibold self-center">
+              Archivo cargado:
+            </p>
+            <p className="text-lg font-extralight self-center">
+              {selectedFile.name}
+            </p>
+            <div onClick={handleDelete} className="py-2 cursor-pointer">
+              <img src={cancel} width={15} className="self-center " />
+            </div>
+          </div>
+        )}
+
         <div className="  content-end flex flex-wrap h-52 py-10">
           <button
+            onClick={handleSend}
             className="py-2 w-full font-semibold rounded-full bg-primary text-black hover:text-white "
             type="submit"
           >
