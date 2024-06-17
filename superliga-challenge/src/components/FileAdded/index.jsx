@@ -8,7 +8,6 @@ const FileAdded = () => {
       <div>
         <Header />
       </div>
-
       <div className=" py-5">
         <Card />
       </div>

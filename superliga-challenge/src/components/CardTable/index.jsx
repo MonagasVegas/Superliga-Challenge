@@ -9,6 +9,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import { useLocation } from "react-router-dom";
 import './index.css'
+import useLocalStorage from "../hooks";
 
 const columns = [
   { 
@@ -44,9 +45,14 @@ const columns = [
 ];
 
 const CardTable = () => {
-  const { state } = useLocation();
-  console.log("🐉 ~ Table ~ state:", state);
-  const rows = state.data;
+  // const { state } = useLocation();
+  // console.log("🐉 ~ Table ~ state:", state);
+  // const rows = state.data;
+
+  const [auth] = useLocalStorage("@auth", []);
+
+
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -82,7 +88,7 @@ const CardTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
+              {auth
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => (
                   <TableRow key={index}>
@@ -102,7 +108,7 @@ const CardTable = () => {
           labelRowsPerPage="Filas por página"
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
           component="div"
-          count={rows.length}
+          count={auth.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
