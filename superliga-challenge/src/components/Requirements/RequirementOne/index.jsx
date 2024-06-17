@@ -4,9 +4,6 @@ import useLocalStorage from "../../hooks";
 
 const RequirementOne = () => {
   const [auth] = useLocalStorage("@auth", []);
-  console.log("🐉 ~ RequirementOne ~ auth:", auth)
-
-  console.log('AQUI ES ', auth.length)
 
   return (
     <div>
