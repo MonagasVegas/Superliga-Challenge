@@ -12,7 +12,7 @@ const Modal = ({ title, subtitle }) => {
     <div className="flex w-full justify-center mt-28 ">
       <div className="py-5 px-5 flex flex-col justify-center w-1/3 rounded-lg bg-white ">
         <div className=" flex flex-col  justify-center items-center mt-12  ">
-          <h1 className="text-black font-bold text-2xl ">{title}</h1>
+          <h1 className="text-red-600 font-bold text-2xl ">{title}</h1>
           <span className="text-black font-semibold text-lg ">{subtitle}</span>
         </div>
 
