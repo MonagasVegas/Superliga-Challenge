@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Modal = ({ title, subtitle }) => {
+const Modal = ({ title, subtitle, body }) => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -15,6 +15,8 @@ const Modal = ({ title, subtitle }) => {
           <h1 className="text-red-600 font-bold text-2xl ">{title}</h1>
           <span className="text-black font-semibold text-lg ">{subtitle}</span>
         </div>
+
+        <div>{body}</div>
 
         <div className="flex h-40 items-end justify-center">
           <button

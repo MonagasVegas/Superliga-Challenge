@@ -19,7 +19,7 @@ const RequirementTwo = () => {
   return (
     <div>
       <Modal 
-      title={result.toFixed(2)}
+      title={result?.toFixed(2)}
       subtitle="Es el promedio de edad de los socios del equipo RACING" 
       />
     </div>
