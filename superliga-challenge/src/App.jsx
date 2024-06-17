@@ -1,5 +1,7 @@
 import { Routes, Route, HashRouter } from "react-router-dom";
 import Home from "./components/Home";
+import CardTable from "./components/CardTable";
+import Table from "./components/Table";
 
 function App() {
   return (
@@ -7,6 +9,7 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path='/table' element={<Table />} />
           <Route
             path="*"
             element={
