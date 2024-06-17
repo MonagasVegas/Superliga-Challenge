@@ -3,20 +3,31 @@ import add from "../../assets/img/add.png";
 import big from "../../assets/img/big.png";
 import Papa from "papaparse";
 import cancel from "../../assets/svg/cancel.svg";
+import { useNavigate } from "react-router-dom";
+
+import { CircularProgress } from "@material-ui/core";
+
 const Container = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  console.log("🐉 ~ Container ~ isLoading:", isLoading);
+
   const [data, setData] = useState([]);
   console.log("🐉 ~ Container ~ data:", data);
   const [selectedFile, setSelectedFile] = useState(null);
   console.log("🐉 ~ Container ~ selectedFile:", selectedFile);
 
+  const navigate = useNavigate();
+
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
+    setIsLoading(true);
 
     Papa.parse(file, {
       header: true,
       complete: (results) => {
         setData(results.data);
+        setIsLoading(false);
       },
     });
   };
@@ -27,7 +38,7 @@ const Container = () => {
   };
 
   const handleSend = () => {
-    console.log("Esto es enviar. ");
+    navigate("/table", { state: { data } });
   };
 
   return (
@@ -41,7 +52,7 @@ const Container = () => {
         </div>
 
         {/* Sube tus archivos */}
-        {data == "" && (
+        {data.length === 0 && (
           <div className="flex flex-row gap-3 py-7 px-5 cursor-pointer">
             <img src={add} width={50} className="py-3" />
             <label className="text-2xl font-normal border border-white self-center">
@@ -57,14 +68,15 @@ const Container = () => {
         )}
 
         {selectedFile && (
-          <div className=" py-7 px-5 flex justify-around">
-            <p className="text-lg font-semibold self-center">
-              Archivo cargado:
-            </p>
-            <p className="text-lg font-extralight self-center">
-              {selectedFile.name}
-            </p>
-            <div onClick={handleDelete} className="py-2 cursor-pointer">
+          <div className=" py-7 px-5 flex flex-col">
+            <p className="text-lg font-semibold ">Archivo cargado:</p>
+            <div
+              onClick={handleDelete}
+              className="py-2 cursor-pointer flex gap-7"
+            >
+              <p className="text-lg font-extralight self-center">
+                {selectedFile.name}
+              </p>
               <img src={cancel} width={15} className="self-center " />
             </div>
           </div>
@@ -73,10 +85,19 @@ const Container = () => {
         <div className="  content-end flex flex-wrap h-52 py-10">
           <button
             onClick={handleSend}
-            className="py-2 w-full font-semibold rounded-full bg-primary text-black hover:text-white "
+            className={`py-2 w-full font-semibold rounded-full ${
+              isLoading || data.length === 0
+                ? "bg-[#c6ced1] cursor-not-allowed text-white"
+                : "bg-primary text-black hover:text-white"
+            }`}
             type="submit"
+            disabled={isLoading || data.length === 0}
           >
-            Enviar
+            {isLoading ? (
+              <CircularProgress size={15} color="inherit" />
+            ) : (
+              "Enviar"
+            )}
           </button>
         </div>
       </div>

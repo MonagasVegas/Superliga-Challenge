@@ -1,11 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import attach from "../../assets/img/attach.png";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleHome = () => {
+    navigate("/");
+  };
   return (
     <div className="flex justify-between py-3">
-      <div className="w-full ml-7 justify-center items-center cursor-pointer">
+      <div
+        onClick={handleHome}
+        className="w-full ml-7 justify-center items-center cursor-pointer"
+      >
         <img src={attach} width={40} />
       </div>
 
