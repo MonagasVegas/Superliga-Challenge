@@ -1,6 +1,40 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import CardTable from "../CardTable";
+import useLocalStorage from "../hooks";
+
+const columns = [
+  {
+    id: 1,
+    label: "Nombre",
+    minWidth: 100,
+    align: "center",
+  },
+  {
+    id: 2,
+    label: "Edad",
+    minWidth: 100,
+    align: "center",
+  },
+  {
+    id: 3,
+    label: "Equipo",
+    minWidth: 100,
+    align: "center",
+  },
+  {
+    id: 3,
+    label: "Estado civil",
+    minWidth: 100,
+    align: "center",
+  },
+  {
+    id: 3,
+    label: "Nivel de Estudios",
+    minWidth: 100,
+    align: "center",
+  },
+];
 
 const data = [
   {
@@ -29,6 +63,7 @@ const data = [
 
 const Card = () => {
   const navigate = useNavigate();
+  const [auth] = useLocalStorage("@auth", []);
 
   const handleCardClick = (id) => {
     console.log("click hiciis", id);
@@ -66,9 +101,13 @@ const Card = () => {
           </div>
         ))}
       </div>
-
       <div>
-        <CardTable />
+        <CardTable
+          columns={columns}
+          rows={auth}
+          visible={true}
+          rowsPerPageOptions={[5, 10, 20, 30, 40, 50, 60]}
+        />
       </div>
     </div>
   );
