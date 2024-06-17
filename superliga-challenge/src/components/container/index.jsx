@@ -38,7 +38,7 @@ const Container = () => {
   };
 
   const handleSend = () => {
-    navigate("/table", { state: { data } });
+    navigate('/file-added', { state: { data } });
   };
 
   return (
@@ -50,7 +50,6 @@ const Container = () => {
             ¿Tienes archivos grandes que enviar?
           </h1>
         </div>
-
         {/* Sube tus archivos */}
         {data.length === 0 && (
           <div className="flex flex-row gap-3 py-7 px-5 cursor-pointer">

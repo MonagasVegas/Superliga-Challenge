@@ -9,7 +9,8 @@ const Header = () => {
     navigate("/");
   };
   return (
-    <div className="flex justify-between py-3">
+    <div 
+    className="flex justify-between py-3">
       <div
         onClick={handleHome}
         className="w-full ml-7 justify-center items-center cursor-pointer"

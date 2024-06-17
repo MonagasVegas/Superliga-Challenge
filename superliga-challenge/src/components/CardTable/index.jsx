@@ -46,9 +46,7 @@ const columns = [
 const CardTable = () => {
   const { state } = useLocation();
   console.log("🐉 ~ Table ~ state:", state);
-
   const rows = state.data;
-
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -62,7 +60,7 @@ const CardTable = () => {
   };
 
   return (
-    <div className="px-16 py-10">
+    <div className="px-10 py-10">
       <Paper elevation={3} className="rounded-full w-full ">
         <TableContainer  className="rounded-table-container" >
           <Table stickyHeader>
