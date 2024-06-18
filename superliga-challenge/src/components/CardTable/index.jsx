@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -47,7 +47,8 @@ const CardTable = ({ columns, rows, visible, rowsPerPageOptions }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              {rows
+                ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => (
                   <TableRow key={index}>
                     <TableCell align="center">{row.name}</TableCell>
@@ -55,8 +56,8 @@ const CardTable = ({ columns, rows, visible, rowsPerPageOptions }) => {
                     <TableCell align="center">{row.equipment}</TableCell>
                     {visible && (
                       <>
-                    <TableCell align="center">{row.status}</TableCell>
-                    <TableCell align="center">{row.study}</TableCell>
+                        <TableCell align="center">{row.status}</TableCell>
+                        <TableCell align="center">{row.study}</TableCell>
                       </>
                     )}
                   </TableRow>

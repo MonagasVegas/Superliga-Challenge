@@ -3,7 +3,6 @@ import useLocalStorage from "../../hooks";
 import Modal from "../../Modal";
 
 const RequirementFour = () => {
-  // Un listado con los 5 nombres más comunes entre los hinchas de River
   const [auth] = useLocalStorage("@auth", []);
   const [result, setResult] = useState([]);
 
@@ -27,10 +26,10 @@ const RequirementFour = () => {
   return (
     <div>
       <Modal
-        subtitle="Los 5 nombres mas comunes entre los hinchas del River."
+        title="Cinco nombres mas comunes entre los hinchas del River."
         body={
           <>
-            <div className="flex justify-center">
+            <div className="flex justify-center ">
               <ul>
                 {result?.map((data) => (
                   <li className="font-serif py-1" key={data}>
