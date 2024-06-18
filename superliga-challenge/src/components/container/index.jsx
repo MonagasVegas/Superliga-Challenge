@@ -4,21 +4,14 @@ import big from "../../assets/img/big.png";
 import Papa from "papaparse";
 import cancel from "../../assets/svg/cancel.svg";
 import { useNavigate } from "react-router-dom";
-
 import { CircularProgress } from "@material-ui/core";
-import useLocalStorage from "../hooks";
 
 const Container = () => {
   const navigate = useNavigate();
   
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
-  console.log("🐉 ~ Container ~ data:", data);
-  const [selectedFile, setSelectedFile] = useState(null);
-  console.log("🐉 ~ Container ~ selectedFile:", selectedFile);
-  
-  const [auth, setAuth] = useLocalStorage("@auth", []);
-  console.log("🐉 ~ Container ~ auth:", auth)
+  const [selectedFile, setSelectedFile] = useState(null);  
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -29,7 +22,6 @@ const Container = () => {
       header: true,
       complete: (results) => {
         setData(results.data);
-        setAuth(results.data)
         setIsLoading(false);
       },
     });

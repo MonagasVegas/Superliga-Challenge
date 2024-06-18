@@ -29,7 +29,6 @@ const RequirementThree = () => {
 
   const [auth] = useLocalStorage("@auth", []);
   const [result, setResult] = useState([]);
-  console.log("🐉 ~ RequirementThree ~ result:", result);
 
   useEffect(() => {
     const filteredAuth = auth.filter(

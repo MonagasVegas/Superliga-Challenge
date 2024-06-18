@@ -16,7 +16,7 @@ const Header = () => {
         <img src={attach} width={40} />
       </div>
 
-      <div className="flex w-full xs:w-full lg:w-1/2 gap-2   justify-center bg-white rounded  mr-7 border border-red-600 ">
+      <div className="flex w-full xs:w-full lg:w-1/2 gap-2   justify-center bg-white rounded  mr-7 ">
         <Link
           to="/"
           className="text-black hover:text-gray-700 text-sm font-semibold py-2  px-2 border-r border-gray-300"

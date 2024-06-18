@@ -1,7 +1,5 @@
 import { Routes, Route, HashRouter } from "react-router-dom";
 import Home from "./components/Home";
-import CardTable from "./components/CardTable";
-import Table from "./components/Table";
 import FileAdded from "./components/FileAdded";
 import RequirementFive from "./components/Requirements/RequirementFive";
 import RequirementFour from "./components/Requirements/RequirementFour";
@@ -15,9 +13,7 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path='/table' element={<Table />} />
           <Route path='/file-added' element={<FileAdded />} />
-
           <Route path='/requirement1' element={<RequirementOne />} />
           <Route path='/requirement2' element={<RequirementTwo />} />
           <Route path='/requirement3' element={<RequirementThree />} />
